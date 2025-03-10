@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Love Message</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            background: url('https://images.pexels.com/photos/776635/pexels-photo-776635.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') 
+                        no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            position: relative;
+        }
+        h1, #question {
+            transition: opacity 0.5s ease-out;
+        }
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+            display: flex;
+            gap: 20px; /* Adds space between buttons */
+        }
+        button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            position: relative;
+        }
+        #yes {
+            background-color: green;
+            color: white;
+        }
+        #no {
+            background-color: red;
+            color: white;
+        }
+        #message {
+            font-size: 2em;
+            font-weight: bold;
+            color: red;
+            text-shadow: 2px 2px 4px #000;
+            position: absolute;
+            top: 50%;
+            opacity: 0;
+            animation: floatUp 3s ease-out forwards;
+            display: none;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(-50px); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 🔹 1️⃣ CUSTOM POPUP MESSAGE -->
+<div id="customPopup" class="popup-container">
+    <div class="popup-content">
+        <h2>💖 Something Special for You 💖</h2>
+                <button class="popup-button" onclick="closePopup()">Open It</button>
+    </div>
+</div>
+
+<style>
+    /* Full-Screen Background Blank Effect */
+    .blank-bg {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: white;
+        z-index: 999;
+    }
+
+    /* Popup Container */
+    .popup-container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        display: none;
+        z-index: 1000;
+        animation: fadeIn 0.8s ease-in-out, slideDown 1s ease-out;
+    }
+
+    /* Popup Content */
+    .popup-content h2 {
+        color: red;
+        font-size: 2em;
+        animation: heartbeat 1.5s infinite;
+    }
+
+    .popup-button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        border: none;
+        background: red;
+        color: white;
+        font-size: 1em;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+        0% { transform: translate(-50%, -60%); }
+        100% { transform: translate(-50%, -50%); }
+    }
+
+    @keyframes heartbeat {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+    }
+</style>
+
+<script>
+    window.onload = function() {
+        document.getElementById("customPopup").style.display = "block";
+        document.getElementById("blankScreen").style.display = "block"; // Show blank screen
+    };
+
+    function closePopup() {
+        document.getElementById("customPopup").style.display = "none";
+        document.getElementById("blankScreen").style.display = "none"; // Remove blank screen
+    }
+</script>
+
+<!-- Blank Background to Hide Content Behind the Popup -->
+<div id="blankScreen" class="blank-bg"></div>
+
+
+<!-- 🔹 2️⃣A LOVE MESSAGE SECTION -->
+<h1 id="h1" style="font-family: 'Love Ya Like A Sister', cursive; font-size: 2.5em; color: #C21E56;">I ❤️ You So Much Baby!</h1>
+
+<!-- 🔹 2️⃣B LOVE QUESTION SECTION -->
+<p id="question" style="color: red;">If you love me, please click "Yes". ❤️</p>
+
+<!-- Google Font for Romantic Style -->
+<link href="https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&display=swap" rel="stylesheet">
+
+
+
+    <!-- 🔹 2️⃣C BUTTON SECTION (Yes Moves, No Accepts) -->
+    <div class="buttons">
+        <button id="yes" onmouseover="moveYesButton()">Yes</button>
+        <button id="no" onclick="loveAccepted()">No</button>
+    </div>
+
+    <!-- 🔹 3️⃣ FLOATING "YES" BUTTON FUNCTION -->
+    <script>
+        function moveYesButton() {
+            let button = document.getElementById("yes");
+
+            // Get smaller movement area (20% of viewport)
+            let maxX = window.innerWidth * 0.2;
+            let maxY = window.innerHeight * 0.2;
+
+            // Generate new position
+            let x = Math.random() * maxX;
+            let y = Math.random() * maxY;
+
+            // Ensure the button stays within a small floating area
+            button.style.position = "absolute";
+            button.style.left = x + "px";
+            button.style.top = y + "px";
+        }
+    </script>
+
+<!-- 🔹 4️⃣ AFTER CLICKING "NO" (LOVE ACCEPTED MESSAGE) -->
+
+<p id="message">
+    <span>I</span>
+    <span> </span>
+    <span>l</span>
+    <span>o</span>
+    <span>v</span>
+    <span>e</span>
+    <span> </span>
+    <span>y</span>
+    <span>o</span>
+    <span>u</span>
+    <span> </span>
+    <span>t</span>
+    <span>o</span>
+    <span>o</span>,
+    <span> </span>
+    <span>b</span>
+    <span>a</span>
+    <span>b</span>
+    <span>y</span>
+    <span> 💞💘😍</span>
+</p>
+
+<!-- 🔹 Second Love Note -->
+<p id="secondMessage">
+    You are the best part of my life, my heart’s greatest joy.  
+    Every moment with you feels like a beautiful dream I never want to wake up from.  
+    I love you endlessly! 💖✨
+</p>
+
+<style>
+/* 🔹 1️⃣ MESSAGE POSITION & TEXT STYLE */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+#message {
+    display: none;
+    font-size: 4em; /* Message size */
+    font-weight: bold;
+    color: Red; /* Text color */
+    text-shadow: 2px 2px 4px #000;
+    font-family: 'Dancing Script', cursive; /* 💖 Romantic Font */
+
+    /* Centering the message */
+    position: fixed;
+    text-align: center;
+    white-space: nowrap;
+    left: 22%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+}
+
+/* 🔹 Second love note styling (White color with shadow) */
+#secondMessage {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    text-align: center;
+    position: fixed;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    display: none;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); /* Soft shadow effect */
+}
+</style>
+
+<script>
+function loveAccepted() {
+    let message = document.getElementById("message");
+    let secondMessage = document.getElementById("secondMessage");
+
+    message.style.display = "block"; // Show the first message
+    secondMessage.style.display = "block"; // Show the second message
+
+    let letters = message.getElementsByTagName("span");
+    for (let i = 0; i < letters.length; i++) {
+        letters[i].style.animationDelay = `${i * 0.1}s`;
+    }
+
+    // Hide other elements
+    document.getElementById("h1").style.opacity = "0";
+    document.getElementById("question").style.opacity = "0";
+    document.querySelector(".buttons").style.display = "none";
+
+    // Hide the image properly
+    let img = document.getElementById("loveImage");
+    if (img) {
+        img.style.display = "none";  
+        img.remove();  
+    }
+
+    // ✅ Use the converted Google Drive image URL
+    let newBackgroundUrl = "https://lh3.googleusercontent.com/d/18B6JJ_kC9fY7Zzymzh-AtJOxsiIDbSIM=w1920-h1080";
+
+    // ✅ Apply full-screen background settings
+    document.body.style.background = `url(${newBackgroundUrl}) no-repeat center center fixed`;
+    document.body.style.backgroundSize = "cover"; // Ensures it covers the screen
+    document.body.style.transition = "background 1s ease-in-out"; // Smooth transition effect
+}
+</script>
+</body>
+</html>
